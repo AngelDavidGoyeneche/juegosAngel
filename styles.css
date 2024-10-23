@@ -1,0 +1,202 @@
+:root {
+    --primary-bg: #0d1b2a;
+    --secondary-bg: #1b263b;
+    --accent-bg: #415a77;
+    --text-color: #e0e1dd;
+    --accent-color: #fca311;
+    --win-color: #4caf50;
+    --lose-color: #e63946;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-color: var(--primary-bg);
+    color: var(--text-color);
+    line-height: 1.6;
+}
+
+header {
+    background-color: var(--secondary-bg);
+    padding: 1rem;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+header h1 {
+    font-size: clamp(1.5rem, 4vw, 2.5rem);
+    margin: 0;
+}
+
+main {
+    flex-grow: 1;
+    padding: 1rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    max-width: 1400px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.game-container {
+    background: linear-gradient(145deg, var(--accent-bg), var(--secondary-bg));
+    border-radius: 15px;
+    padding: 1.5rem;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 250px;
+}
+
+@media (hover: hover) {
+    .game-container:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 12px 24px rgba(0,0,0,0.3);
+    }
+}
+
+.game-icon {
+    font-size: clamp(2rem, 6vw, 3rem);
+    margin-bottom: 1rem;
+}
+
+button {
+    background: linear-gradient(145deg, var(--accent-color), #e76f51);
+    color: var(--primary-bg);
+    border: none;
+    padding: 0.75rem 1.5rem;
+    margin: 0.5rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border-radius: 8px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: clamp(0.875rem, 2vw, 1rem);
+}
+
+@media (hover: hover) {
+    button:hover:not(:disabled) {
+        transform: scale(1.05);
+        box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+}
+
+button:disabled {
+    background: #666;
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+
+#balance {
+    font-size: clamp(1.25rem, 4vw, 1.75rem);
+    font-weight: bold;
+    color: var(--accent-color);
+    text-align: center;
+    padding: 1rem;
+    background: var(--secondary-bg);
+    border-radius: 10px;
+    margin: 1rem auto;
+    max-width: 300px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+/* Card Styles */
+.card {
+    display: inline-flex;
+    width: clamp(60px, 15vw, 80px);
+    height: clamp(90px, 22.5vw, 120px);
+    background: var(--text-color);
+    color: var(--primary-bg);
+    margin: 5px;
+    border-radius: 10px;
+    box-shadow: 2px 2px 6px rgba(0,0,0,0.3);
+    justify-content: center;
+    align-items: center;
+    font-size: clamp(1.25rem, 3vw, 1.5rem);
+    font-weight: bold;
+    position: relative;
+}
+
+.card.red {
+    color: var(--lose-color);
+}
+
+/* Mines Grid */
+.mine-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 10px;
+    max-width: 500px;
+    margin: 20px auto;
+}
+
+.mine-cell {
+    aspect-ratio: 1;
+    background: var(--accent-bg);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: clamp(1.25rem, 3vw, 1.5rem);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+@media (hover: hover) {
+    .mine-cell:hover:not(:disabled) {
+        transform: scale(1.05);
+        background: var(--accent-color);
+    }
+}
+
+
+
+footer {
+    background-color: var(--secondary-bg);
+    text-align: center;
+    padding: 1rem;
+    margin-top: 2rem;
+}
+
+.shake {
+    animation: shake 0.82s cubic-bezier(.36,.07,.19,.97) both;
+}
+
+@keyframes shake {
+    10%, 90% { transform: translate3d(-1px, 0, 0); }
+    20%, 80% { transform: translate3d(2px, 0, 0); }
+    30%, 50%, 70% { transform: translate3d(-4px, 0, 0); }
+    40%, 60% { transform: translate3d(4px, 0, 0); }
+}
+
+@media (max-width: 480px) {
+    .game-container {
+        padding: 1rem;
+        min-height: 200px;
+    }
+
+    .bet-options {
+        grid-template-columns: 1fr;
+    }
+
+    .mine-grid {
+        gap: 5px;
+    }
+
+    button {
+        padding: 0.5rem 1rem;
+    }
+}
